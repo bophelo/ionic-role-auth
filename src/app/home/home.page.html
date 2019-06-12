@@ -1,12 +1,35 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      Ionic Role Elements
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <ion-button expand="full" (click)="loginAdmin()" *ngIf=!authenticated>Login as Admin</ion-button>
+  <ion-button expand="full" (click)="loginUser()" *ngIf=!authenticated>Login as User</ion-button>
+  <ion-button expand="full" (click)="logout()" *ngIf=authenticated>Logout</ion-button>
+
+  <ion-card color="primary" *appHasRole="['read-content']" [@fadeInOut]>
+    <ion-card-header>My Content</ion-card-header>
+    <ion-card-content>
+      Things every logged in user can see.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="secondary" *appHasRole="['purchase-items']" [@fadeInOut]>
+    <ion-card-header>Purchase Content</ion-card-header>
+    <ion-card-content>
+      Things only the user can see.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="danger" *appHasRole="['write-content','admin']"[@fadeInOut]>
+    <ion-card-header>Content</ion-card-header>
+    <ion-card-content>
+      Things only the admin can see.
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
